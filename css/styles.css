@@ -1,12 +1,12 @@
-#show-contact {
+#show-ticket {
   display: none;
 }
 
-.contact {
+.result {
   cursor: pointer;
   color: #0088cc;
 }
 
-.contact:hover {
+.result:hover {
   text-decoration: underline;
 }
