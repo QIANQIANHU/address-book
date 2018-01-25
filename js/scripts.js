@@ -27,13 +27,50 @@ $(document).ready(function() {
 
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
-    var moviename = $("input:radio[name=moviename]:checked").val();
+    var movieInfo = $("input:radio[name=movieName]:checked").val();
+    var age = parseInt($("input#new-age").val());
+    var timeBucket = $("#time").val();
+
+    console.log("Selected movie info is: " + movieInfo);
+
+    var movieResults = movieInfo.split("|");
+    var movieName = movieResults[0];
+    var moviePirce = movieResults[1];
+
+    console.log("Selected movie name is: " + movieName);
+    console.log("Selected movie price is: " + moviePirce);
 
     var newResult = new Result(inputtedFirstName, inputtedLastName);
 
-    $("ul#ticket").append("<li><span class='result'>" + newResult.fullName() + "</span></li>");
+    if (timeBucket === 2 || timeBucket === 3 || timeBucket === 4) {
+      moviePirce -= 1;
+    }
+    if (age >= 65 || age <= 3) {
+      moviePirce -= 1;
+    }
+    if (movieName === "Blade Runner 2049") {
+      moviePirce -= 1;
+    }
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
+    console.log("Age is: " + age);
+
+    //var time = $
+
+    //$("ul#ticket").append("<li><span class='result'>" + newResult.fullName() + "</span></li>");
+
+    // $("#show-ticket.first-name").val(inputtedFirstName);
+    // $("#show-ticket.last-name").val(inputtedLastName);
+    // $("#show-ticket.movie-name").val(movieName);
+    // $("#show-ticket.time").val(timeBucket);
+    // $("#show-ticket.price").val(moviePirce);
+
+    $(".full-name").text(newResult.fullName());
+    //$("#show-ticket.last-name").text(inputtedLastName);
+    $(".movie-name").text(movieName);
+    $(".time").text(timeBucket);
+    $(".price").text(moviePirce);
+
+    //$("input#new-first-name").val("");
+    //$("input#new-last-name").val("");
   });
 });
